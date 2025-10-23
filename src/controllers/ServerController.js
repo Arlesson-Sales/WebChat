@@ -51,10 +51,9 @@ class ServerController
     /**
      * Esse método faz todas as operações importantes para a inicialização do servidor.
      * @param {number} port Número da porta.
-     * @param {string} hostname Nome da host.
      * @param {Function} backlog Callback que será quando servidor estiver de pé.
      */
-    async start(port, hostname, backlog)
+    async start(port, backlog)
     {
         await this.connectToDatabase();
         this.ioConfig();
@@ -72,7 +71,7 @@ class ServerController
         this.app.use(default_routers);
         this.app.use(users_routers);
         //Colocando servidor de pé
-        this.server.listen(port, hostname, backlog);
+        this.server.listen(port, backlog);
     }
 }
 
