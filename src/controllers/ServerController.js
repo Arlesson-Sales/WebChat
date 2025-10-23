@@ -19,11 +19,13 @@ class ServerController
     {
         this.io.on("connection", socket => {
             socket.on("new-user", data => {
-                if (!usersController.online.find(user => user.name === data.name))
+                if (!usersController.online.has(socket.id))
                 {
                     const message = { name: "", message: `${data.name} entrou no chat.` };
                     this.io.emit("send-message", message);
-                    usersController.online.push(data);
+                
+                    usersController.online.set(socket.id, data.name);
+                    console.log(`> O usuário ${data.name} logou no chat | socket ${socket.id}`);
                 }
             });
 
@@ -32,7 +34,8 @@ class ServerController
             });
 
             socket.on("disconnect", reason => {
-                console.log(`> o sokcet ${socket.id} foi desconectado por ${reason}`);
+                usersController.online.delete(socket.id)
+                console.log(`> o sokcet ${socket.id} foi desconectado pelo motivo: ${reason}`);
             });
         })
     }

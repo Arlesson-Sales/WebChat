@@ -1,5 +1,12 @@
 import jwt from "jsonwebtoken";
+import http from "http";
 
+/**
+ * Middleware de autenticação para saber que o usuário está logado.
+ * @param {http.ClientRequest} request Objeto de requisição do cliente.
+ * @param {http.ServerResponse} response Objeto de resposta do servidor.
+ * @param {Function} next Função para chamar o próximo middleware.
+ */
 export function loginTokenAuth(request, response, next)
 {
     const token = request.cookies.auth_token;
@@ -13,7 +20,7 @@ export function loginTokenAuth(request, response, next)
     }
     catch(erro)
     {
-        console.log(`> Erro durante a autenticaçaõ do token: ${erro.message}`);
-        response.status(400).redirect("/");
+        console.log(`> Erro durante a autenticação do token: ${erro.message}`);
+        response.status(400).redirect("/forms");
     }
 }

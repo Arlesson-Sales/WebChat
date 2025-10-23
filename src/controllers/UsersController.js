@@ -6,7 +6,7 @@ import http from "http";
 
 class UsersController
 {
-    online = []; //Vetor que registra quais usuários estão online.
+    online = new Map(); //Vetor que registra quais usuários estão online.
 
     ////////////////////////////////////////////////////////////////////////////
     /// MÉTODOS CONTROLADORES
@@ -58,6 +58,15 @@ class UsersController
     /////////////////////////////////////////////////////////////////////////////
 
     /**
+     * Retorna o nome dos usuários online.
+     * @param {http.ClientRequest} request Objeto de requisição do cliente.
+     * @param {http.ServerResponse} response Objeto de resposta do servidor.
+     */
+    getOnline(request, response) {
+        response.status(200).json([...this.online]);
+    }
+
+    /**
      * Função de rota que retorna um json com todos os usuários cadastrados.
      * @param {http.ClientRequest} request Objeto de requisição do cliente.
      * @param {http.ServerResponse} response Objeto de resposta do servidor.
@@ -72,6 +81,7 @@ class UsersController
         catch (erro)
         {
             console.log(erro);
+            response.status(400).json({ message: erro.message });
         }
     }
 
