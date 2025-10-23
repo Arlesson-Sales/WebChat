@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Arlesson Sales">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./public/styles/global.css">
+        <link rel="stylesheet" href="./public/styles/pages/forms.css">
+        <link rel="stylesheet" href="./public/styles/components/header.css">
+        <script src="https://kit.fontawesome.com/9a606cc720.js" crossorigin="anonymous" defer></script>
+        <script src="./public/scripts/forms.js" defer></script>
+        <title>Login</title>
+    </head>
+    <body>
+        <%- include("./components/header.ejs") %>
+        <main>
+            <section class="form-login">
+                <header>
+                    <h2 id="form-title">Sing in</h2>
+                </header>
+                <div class="form-toggle-container">
+                    <button class="actived-button" value="form-login">Logar</button>
+                    <button value="form-registration">Cadastrar</button>
+                </div>
+
+                <form id="form-login" action="/login" method="POST">
+                    <div id="form-login-input-container">
+                        <input class="form-login-text-input" name="name" type="text" placeholder="Nome de usuário" required autocomplete="additional-name"/>
+                        <input class="form-login-text-input" name="password" type="password" placeholder="Senha" required autocomplete="current-password"/>                  
+                        <% if (message) %>
+                        <p class="form-red-message"><%= message %></p>
+                    </div>
+                    <div id="form-login-button-container">
+                        <input class="form-login-button" type="submit" value="Entar" />
+                    </div>
+                </form>
+
+                <form id="form-registration" action="/registration" method="POST" style="display: none;">
+                    <div id="form-login-input-container">
+                        <input class="form-login-text-input" name="name" type="text" placeholder="Nome de usuário" required autocomplete="additional-name"/>
+                        <input class="form-login-text-input" name="password" type="password" placeholder="Senha" required autocomplete="current-password"/>
+                        <% if (message) %>
+                        <p class="form-red-message"><%= message %></p>
+                    </div>
+                    <div id="form-login-button-container">
+                        <input class="form-login-button" type="submit" value="Cadastrar" />
+                    </div>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

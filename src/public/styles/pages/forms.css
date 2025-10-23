@@ -1,0 +1,147 @@
+body {
+    height: 100vh;
+    background-color: var(--default-color-01);
+    background-image: linear-gradient(180deg, var(--default-color-01), var(--default-color-02));
+}
+
+main {
+    display: flex;
+    margin: 0 auto;
+    max-width: 320px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*
+***************************************************************
+* ESTILIZAÇÃO DO FORMULARIO DE LOGIN
+**************************************************************
+*/
+
+.form-login {
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.231);
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 10px auto;
+    padding: 5px;
+    width: 95%;
+}
+
+.form-login > header {
+    text-align: center;
+    font-size: 0.9em;
+    padding: 10px;
+    height: 70px;
+    display: flex;
+    flex-wrap: nowrap;
+    user-select: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*
+***************************************************************
+* CONTAINER DE BUTÔES PARA TROCAR DE FORMULARIO
+**************************************************************
+*/
+.form-toggle-container {
+    max-width: 89%;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form-toggle-container > button {
+    width: 50%;
+    padding: 5px;
+    outline: none;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 8px;
+    display: inline-block;
+    border: 1px solid #3d3d3d;
+    transition: background linear 0.2s;
+}
+
+.form-toggle-container > button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-toggle-container > button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-toggle-container > button.actived-button {
+    background-color: var(--default-color-02);
+    color: #fff;
+}
+
+/*
+***************************************************************
+* CONTAINER E INPUTS DE TEXTO, NOME E SENHA
+**************************************************************
+*/
+#form-login-input-container {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    height: 160px;
+    max-width: 89%;
+    margin: 0 auto;
+}
+
+.form-login-text-input {
+    color: #3a3a3a;
+    border-radius: 10px;
+    border: 1px solid #3b3b3b;
+    margin: 0 auto 20px auto;
+    text-indent: 5px;
+    display: block;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    height: 35px;
+}
+
+.form-login-text-input::placeholder {
+    color: #373737;
+}
+
+/*
+***************************************************************
+* CONTAINER DOS BOTÕES DE LOGIN E CADASTRO
+**************************************************************
+*/
+.form-red-message {
+    color: #f00;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+#form-login-button-container {
+    margin: 0 auto 25px auto;
+    width: 90%;
+}
+
+.form-login-button {
+    transition: all linear 0.2s;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 5px;
+    width: 49%;
+    color: #fff;
+    margin: 0 auto;
+    border: 1px solid #313131;
+    background-color: var(--default-color-02);
+}
+
+.form-login-button:hover {
+    background-color: var(--default-color-03);
+    color: #fff;
+}

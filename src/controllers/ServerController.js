@@ -1,0 +1,79 @@
+import cookie_parser from "cookie-parser";
+import { Server } from "socket.io";
+import mongoose from "mongoose";
+import express from "express";
+import http from "http";
+import ejs from "ejs";
+
+import { users_routers, usersController } from "../routers/users.-routers.js";
+import default_routers from "../routers/default-routers.js";
+
+
+class ServerController
+{
+    app = express();
+    server = http.createServer(this.app);
+    io = new Server(this.server);
+
+    ioConfig()
+    {
+        this.io.on("connection", socket => {
+            socket.on("new-user", data => {
+                if (!usersController.online.find(user => user.name === data.name))
+                {
+                    const message = { name: "", message: `${data.name} entrou no chat.` };
+                    this.io.emit("send-message", message);
+                    usersController.online.push(data);
+                }
+            });
+
+            socket.on("send-message", message => {
+                this.io.emit("send-message", message);
+            });
+
+            socket.on("disconnect", reason => {
+                console.log(`> o sokcet ${socket.id} foi desconectado por ${reason}`);
+            });
+        })
+    }
+
+    /** Quando chamado esse método faz com que seja estabelecida uma conexão com o banco de dados. */
+    async connectToDatabase()
+    {
+        try {
+            await mongoose.connect(process.env.DATABASE_KEY);
+            console.log("> Conectado ao banco de dados!");
+        } catch (erro) {
+            console.log(`> Erro ao conectar ao banco de dados: ${erro.message}`);
+        }
+    }
+
+    /**
+     * Esse método faz todas as operações importantes para a inicialização do servidor.
+     * @param {number} port Número da porta.
+     * @param {string} hostname Nome da host.
+     * @param {Function} backlog Callback que será quando servidor estiver de pé.
+     */
+    async start(port, hostname, backlog)
+    {
+        await this.connectToDatabase();
+        this.ioConfig();
+
+        //Definindo middlewares
+        this.app.use("/public", express.static("./src/public"));
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.json());
+        //Definindo mecanismo de modelos
+        this.app.engine("ejs", ejs.renderFile);
+        this.app.set("views", "./src/pages");
+        this.app.set("view engine", "ejs");
+        //Definindo as rotas
+        this.app.use(cookie_parser());
+        this.app.use(default_routers);
+        this.app.use(users_routers);
+        //Colocando servidor de pé
+        this.server.listen(port, hostname, backlog);
+    }
+}
+
+export default new ServerController();

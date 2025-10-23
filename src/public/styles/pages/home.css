@@ -1,0 +1,90 @@
+body {
+    height: 100vh;
+    background-color: var(--default-color-01);
+    background-image: linear-gradient(180deg, var(--default-color-01), var(--default-color-02));
+}
+
+main {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/*
+***************************************************************
+* ESTILIZAÇÃO DO FORMUALRIO DE ENVIO DE MENSAGENS
+**************************************************************
+*/
+.chat-text-form {
+    bottom: 10px;
+    width: 320px;
+    display: flex;
+    position: fixed;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.chat-text-form > #chat-text-input {
+    width: 77%;
+    padding: 8px;
+    height: 40px;
+    outline: none;
+    color: #414141;
+    text-indent: 5px;
+    background-color: #fff;
+    
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border: 1px solid #313131;
+    border-bottom-right-radius: 0;
+}
+
+.chat-text-form > #chat-text-input::placeholder {
+    color: #9b9a9a;
+}
+
+.chat-text-form > #chat-button {
+    width: 20%;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid #313131;
+    background-color: var(--default-color-02);
+    
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/*
+***************************************************************
+* ESTILIZAÇÃO DO CORPO DO CHAT ONDE FICARAM AS MENSAGENS
+**************************************************************
+*/
+.chat-body {
+    width: 98%;
+    padding: 12px;
+    height: 82vh;
+    margin: 5px auto;
+    overflow-y: scroll;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.chat-body > p {
+    color: #000000;
+    text-align: left;
+    font-size: 0.8em;
+    margin-bottom: 5px;
+}
+
+.chat-user-label {
+    font-weight: 700;
+}
+
+/* Barra de rolagem do chat */
+.chat-body::-webkit-scrollbar {
+    width: 1px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0);
+}

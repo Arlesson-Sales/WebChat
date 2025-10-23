@@ -1,0 +1,26 @@
+.default-header {
+    background-color: var(--default-color-02);
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 40px;
+
+    color: #fff;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.default-header h1 {
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.default-header i#header-side-menu-icon {
+    position: absolute;
+    cursor: pointer;
+    left: 5px;
+}
