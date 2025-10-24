@@ -14,8 +14,12 @@ async function displayOnlineUsers()
 /** Função evento para fazer com que o meno lateral fique visivel ou não. */
 function toggleSideMenu()
 {
-    const side_menu = document.querySelector(".side-menu");
-    side_menu.classList.toggle("side-menu-actived");
+    if (window.screen.width < 840)
+    {
+        const side_menu = document.querySelector(".side-menu");
+        side_menu.classList.toggle("side-menu-actived");
+    }
+
 }
 
 window.addEventListener("load", () => {

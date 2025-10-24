@@ -26,7 +26,7 @@ main {
 .chat-text-form > #chat-text-input {
     width: 77%;
     padding: 8px;
-    height: 40px;
+    height: 50px;
     outline: none;
     color: #414141;
     text-indent: 5px;
@@ -62,7 +62,7 @@ main {
 .chat-body {
     width: 98%;
     padding: 12px;
-    height: 82vh;
+    height: 81vh;
     margin: 5px auto;
     overflow-y: scroll;
     border-radius: 10px;
@@ -87,4 +87,36 @@ main {
 
 .chat-body::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0);
+}
+
+@media (min-width: 840px) {
+    main {
+        max-width: 520px;
+        margin-right: 70px;
+    }
+
+    .chat-text-form {
+        width: 520px;
+    }
+}
+
+@media (min-width: 1000px) {
+    main {
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    main {
+        max-width: 720px;
+        margin-right: auto;
+    }
+
+    .chat-body {
+        height: 83vh;
+    }
+
+    .chat-text-form {
+        width: 720px;
+    }
 }

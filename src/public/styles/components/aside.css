@@ -5,6 +5,7 @@
 */
 .side-menu {
     background-color: var(--default-color-02);
+    border-bottom-right-radius: 20px;
     transition: transform 0.5s ease;
     transform: translateX(-100%);
     position: absolute;
@@ -45,4 +46,10 @@
     margin-right: 10px;
     border-radius: 100%;
     background-color: #1fdb1f;
+}
+
+@media (min-width: 840px) {
+    .side-menu {
+        transform: translateX(0);
+    }
 }
