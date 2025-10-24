@@ -2,7 +2,7 @@
 async function displayOnlineUsers()
 {
     const side_menu_list = document.querySelector(".side-menu > ul");
-    const request = await window.fetch("http://localhost:8888/api/online");
+    const request = await window.fetch("./api/online");
     const online_users = await request.json();
 
     side_menu_list.innerHTML = "";
