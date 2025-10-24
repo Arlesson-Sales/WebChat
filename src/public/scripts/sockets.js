@@ -10,7 +10,7 @@ function loadCookies()
     for (const cookie of data)
     {
         const [ name, value ] = cookie.split("=");
-        cookies[name] = decodeURIComponent(value);
+        cookies[name.trim()] = decodeURIComponent(value);
     }
     return cookies;
 }
