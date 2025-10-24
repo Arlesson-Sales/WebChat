@@ -63,7 +63,9 @@ class UsersController
      * @param {http.ServerResponse} response Objeto de resposta do servidor.
      */
     getOnline(request, response) {
-        response.status(200).json([...this.online]);
+        const online = [];
+        this.online.forEach((name) => online.push(name));
+        response.status(200).json(online);
     }
 
     /**
