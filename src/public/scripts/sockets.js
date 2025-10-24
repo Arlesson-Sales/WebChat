@@ -65,4 +65,5 @@ window.addEventListener("load", () => {
     loadMessageEvent(cookies.user_name, socket);
     socket.emit("new-user", { name: cookies.user_name });
     socket.on("send-message", sendMessage);
+    socket.on("disconnect", () => socket.emit("user-disconnect", cookies.user_name));
 });

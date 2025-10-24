@@ -1,3 +1,4 @@
+import socketEvents from "../sockets-events.js";
 import cookie_parser from "cookie-parser";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
@@ -5,7 +6,7 @@ import express from "express";
 import http from "http";
 import ejs from "ejs";
 
-import { users_routers, usersController } from "../routers/users.-routers.js";
+import { users_routers } from "../routers/users.-routers.js";
 import default_routers from "../routers/default-routers.js";
 
 
@@ -15,30 +16,7 @@ class ServerController
     server = http.createServer(this.app);
     io = new Server(this.server);
 
-    ioConfig()
-    {
-        this.io.on("connection", socket => {
-            socket.on("new-user", data => {
-                if (!usersController.online.has(socket.id))
-                {
-                    const message = { name: "", message: `${data.name} entrou no chat.` };
-                    this.io.emit("send-message", message);
-                
-                    usersController.online.set(socket.id, data.name);
-                    console.log(`> O usuário ${data.name} logou no chat | socket ${socket.id}`);
-                }
-            });
-
-            socket.on("send-message", message => {
-                this.io.emit("send-message", message);
-            });
-
-            socket.on("disconnect", reason => {
-                usersController.online.delete(socket.id)
-                console.log(`> o sokcet ${socket.id} foi desconectado pelo motivo: ${reason}`);
-            });
-        })
-    }
+    socketsEventsSetup() { this.io.on("connection", socketEvents); }
 
     /** Quando chamado esse método faz com que seja estabelecida uma conexão com o banco de dados. */
     async connectToDatabase()
@@ -59,7 +37,7 @@ class ServerController
     async start(port, backlog)
     {
         await this.connectToDatabase();
-        this.ioConfig();
+        socketEvents(this.io);
 
         //Definindo middlewares
         this.app.use("/public", express.static("./src/public"));

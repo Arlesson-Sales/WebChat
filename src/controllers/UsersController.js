@@ -6,7 +6,7 @@ import http from "http";
 
 class UsersController
 {
-    online = new Map(); //Vetor que registra quais usuários estão online.
+    online = new Set(); //Vetor que registra quais usuários estão online.
 
     ////////////////////////////////////////////////////////////////////////////
     /// MÉTODOS CONTROLADORES
@@ -63,9 +63,7 @@ class UsersController
      * @param {http.ServerResponse} response Objeto de resposta do servidor.
      */
     getOnline(request, response) {
-        const online = [];
-        this.online.forEach((name) => online.push(name));
-        response.status(200).json(online);
+        response.status(200).json([...this.online]);
     }
 
     /**
