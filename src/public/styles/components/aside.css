@@ -7,7 +7,7 @@
     background-color: var(--default-color-03);
     border-bottom-right-radius: 20px;
     transition: transform 0.5s ease;
-    /*transform: translateX(-100%);*/
+    transform: translateX(-100%);
     position: absolute;
     width: 250px;
     height: 83vh;
@@ -25,26 +25,29 @@
 
 .side-menu ul > li {
     background-color: var(--default-color-03);
-    justify-content: center;
+    width: 70%;
+    justify-content: left;
     align-items: center;
-    text-align: left;
     margin: 10px auto;
+    text-align: left;
     display: flex;
-    height: 35px;
+    height: 45px;
 
     color: #fff;
     cursor: pointer;
     user-select: none;
     font-weight: bolder;
-    
-    border-top: 1px solid #dbdbdb;
-    border-bottom: 1px solid #dbdbdb;
 }
 
-.online-dot {
-    width: 5px;
-    height: 5px;
-    margin-right: 10px;
+.side-menu ul > li > div.profile-circle {
+    background-color: var(--default-color-04);
+    justify-content: center;
     border-radius: 100%;
-    background-color: #1fdb1f;
+    align-items: center;
+    text-align: center;
+    margin-right: 10px;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #fff;
 }
