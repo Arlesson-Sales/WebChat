@@ -5,9 +5,9 @@
 */
 
 .chat-container {
+    width: 100%;
     padding: 10px;
     height: 560px;
-    max-width: 680px;
     margin: 5px auto;
     border-radius: 10px;
     background-color: var(--default-color-01);
@@ -118,4 +118,16 @@
     justify-content: center;
     background-color: #fff;
     color: var(--default-color-04);
+}
+
+/*
+***************************************************************
+* Responsividade do chat
+**************************************************************
+*/
+
+@media (min-width: 840px) {
+    .chat-container {
+        max-width: 880px;
+    }
 }

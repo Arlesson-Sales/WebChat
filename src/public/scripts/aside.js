@@ -1,7 +1,9 @@
 /** Essa função é chamada repetidamente para buscar os usuários online e fazer a exibição dos mesmo no menu lateral. */
 async function displayOnlineUsers()
 {
+    const header_online_infos = document.querySelector("#header-online-infos > p");
     const side_menu_list = document.querySelector(".side-menu > ul");
+
     const request = await window.fetch("./api/online");
     const online_users = await request.json();
 
@@ -15,6 +17,7 @@ async function displayOnlineUsers()
             </li>
         `;
     }
+    header_online_infos.innerText = `Online ${online_users.length}`;
     window.setTimeout(displayOnlineUsers, 10000);
 }
 

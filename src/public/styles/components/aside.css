@@ -9,7 +9,7 @@
     transition: transform 0.5s ease;
     transform: translateX(-100%);
     position: absolute;
-    width: 250px;
+    width: 230px;
     height: 83vh;
     left: 0;
 }
@@ -19,24 +19,30 @@
     transform: translateX(0);
 }
 
-.side-menu ul {
+.side-menu > ul {
     list-style: none;
 }
 
-.side-menu ul > li {
+.side-menu > ul > li {
     background-color: var(--default-color-03);
-    width: 70%;
     justify-content: left;
     align-items: center;
     margin: 10px auto;
     text-align: left;
     display: flex;
     height: 45px;
-
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
+    width: 90%;
+    
     font-weight: bolder;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.side-menu > ul > li > p {
+    position: absolute;
+    left: 50px;
 }
 
 .side-menu ul > li > div.profile-circle {
@@ -46,8 +52,21 @@
     align-items: center;
     text-align: center;
     margin-right: 10px;
+    position: absolute;
     display: flex;
     height: 40px;
     width: 40px;
     border: 1px solid #fff;
+}
+
+/*
+************************************************************************
+* Responsividade do componente de menu lateral
+************************************************************************
+*/
+
+@media (min-width: 840px) {
+    .side-menu {
+        transform: translateX(0);
+    }
 }

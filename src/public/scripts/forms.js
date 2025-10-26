@@ -8,7 +8,7 @@ function eventToggleForm(button, buttons)
     const form_target = document.querySelector(`#${button.value}`);
     const forms_messages = document.querySelectorAll(".form-red-message");
 
-    form_title.innerText = button.value === "form-login" ? "Sing In" : "Sing Up";
+    form_title.innerText = button.value === "form-login" ? "Seja bem vindo" : "Crie sua conta";
     all_forms.forEach(form => form.style.display = "none");
     forms_messages.forEach(message => message.remove());
     form_target.style.display = "block";

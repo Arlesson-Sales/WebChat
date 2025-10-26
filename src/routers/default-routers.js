@@ -9,7 +9,7 @@ router.get("/", loginTokenAuth, (request, response) => {
 
 router.get("/forms", (request, response) => {
     const message = request.query.message;
-    response.status(200).render("forms.ejs", { message });
+    response.status(200).render("forms.ejs", { message, logged: false });
 });
 
 router.get("/home", loginTokenAuth, (request, response) => {

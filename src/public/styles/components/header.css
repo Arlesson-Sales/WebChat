@@ -19,14 +19,103 @@
     justify-content: space-between;
 }
 
-.default-header h1 {
-    width: 100%;
+.default-header > div {
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 30%;
+}
+
+/*
+***************************************************************
+* Container com titulo principal
+**************************************************************
+*/
+
+.default-header > div#header-title-container {
+    width: 50%;
+}
+
+.default-header > div#header-title-container > h1 {
     font-size: 1.2em;
     text-align: center;
 }
 
-.default-header i#header-side-menu-icon {
-    position: absolute;
-    cursor: pointer;
-    left: 5px;
+/*
+***************************************************************
+* Container do icone de menu mobile
+**************************************************************
+*/
+
+.default-header > div#header-side-menu-container {
+    justify-content: left;
+    margin-left: 10px;
+    width: 100px;
+}
+
+/*
+***************************************************************
+* Container a quantidade de usuários online
+**************************************************************
+*/
+
+.default-header > div#header-online-infos {
+    display: none;
+    width: 190px;
+}
+
+/*
+***************************************************************
+* Container com informações do usuário logado
+**************************************************************
+*/
+
+.default-header > div#header-user-infos {
+    width: 100px;
+    justify-content: center;
+    & > p { display: none }
+}
+
+.default-header > div#header-user-infos > p {
+    margin-right: 8px;
+}
+
+.profile-circle {
+    background-color: var(--default-color-04);
+    border: 1px solid #fff;
+    justify-content: center;
+    border-radius: 100%;
+    align-items: center;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 0.8em;
+    display: flex;
+    height: 30px;
+    width: 30px;
+}
+
+/*
+***************************************************************
+* Responsividade do cabeçalho
+**************************************************************
+*/
+
+@media (min-width: 840px) {
+    .default-header > div#header-side-menu-container {
+        display: none;
+    }
+
+    .default-header > div#header-online-infos {
+        justify-content: space-around;
+        display: flex;
+    }
+
+    .default-header > div#header-user-infos {
+        width: 240px;
+        & > p {
+            display: block;
+            text-align: right;
+        }
+    }
 }
