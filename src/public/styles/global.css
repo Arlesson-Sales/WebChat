@@ -8,8 +8,9 @@
 }
 
 :root {
-    --default-color-01: #B6B6D8;
-    --default-color-02: #7F6DCB;
+    --default-color-01: #e5e5f8;
+    --default-color-02: #B6B6D8;
     --default-color-03: #9D9DEE;
-    --default-color-04: #3E2C7E;
+    --default-color-04: #7F6DCB;
+    --default-color-05: #3E2C7E;
 }

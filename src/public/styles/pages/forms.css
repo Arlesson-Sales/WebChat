@@ -1,7 +1,6 @@
 body {
     height: 100vh;
-    background-color: var(--default-color-01);
-    background-image: linear-gradient(180deg, var(--default-color-01), var(--default-color-02));
+    background-color: #fff;
 }
 
 main {
@@ -76,7 +75,7 @@ main {
 }
 
 .form-toggle-container > button.actived-button {
-    background-color: var(--default-color-02);
+    background-color: var(--default-color-03);
     color: #fff;
 }
 
@@ -138,10 +137,10 @@ main {
     color: #fff;
     margin: 0 auto;
     border: 1px solid #313131;
-    background-color: var(--default-color-02);
+    background-color: var(--default-color-03);
 }
 
 .form-login-button:hover {
-    background-color: var(--default-color-03);
+    background-color: var(--default-color-04);
     color: #fff;
 }

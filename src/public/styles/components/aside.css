@@ -1,13 +1,13 @@
 /*
-***************************************************************
-* ESTILIZAÇÃO DO MENU LATERAL
-**************************************************************
+************************************************************************
+* Componente de menu lateral onde serão apresentados os usuários online
+************************************************************************
 */
 .side-menu {
-    background-color: var(--default-color-02);
+    background-color: var(--default-color-03);
     border-bottom-right-radius: 20px;
     transition: transform 0.5s ease;
-    transform: translateX(-100%);
+    /*transform: translateX(-100%);*/
     position: absolute;
     width: 250px;
     height: 83vh;
@@ -24,10 +24,10 @@
 }
 
 .side-menu ul > li {
-    background-color: var(--default-color-02);
+    background-color: var(--default-color-03);
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
     margin: 10px auto;
     display: flex;
     height: 35px;
@@ -36,7 +36,8 @@
     cursor: pointer;
     user-select: none;
     font-weight: bolder;
-    border-bottom-left-radius: 20px;
+    
+    border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid #dbdbdb;
 }
 
@@ -46,10 +47,4 @@
     margin-right: 10px;
     border-radius: 100%;
     background-color: #1fdb1f;
-}
-
-@media (min-width: 840px) {
-    .side-menu {
-        transform: translateX(0);
-    }
 }

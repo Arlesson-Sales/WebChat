@@ -1,0 +1,113 @@
+/*
+***************************************************************
+* Estilização do chat de conversa e todos os seus componentes.
+**************************************************************
+*/
+
+.chat-container {
+    padding: 10px;
+    height: 560px;
+    max-width: 680px;
+    margin: 5px auto;
+    border-radius: 10px;
+    background-color: var(--default-color-01);
+}
+
+/*
+***************************************************************
+* Corpo do chat, container onde vão estar as mensagens.
+**************************************************************
+*/
+
+.chat-container-body {
+    margin: 0 auto 15px auto;
+    overflow-y: scroll;
+    max-width: 650px;
+    outline: none;
+    height: 490px;
+}
+
+.chat-container-body::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-container-body::-webkit-scrollbar-thumb {
+    background-color: var(--default-color-04);
+}
+
+/*
+***************************************************************
+* Mensagens, pequenos componentes dentro do corpo do chat.
+**************************************************************
+*/
+
+.default-message {
+    width: 200px;
+    padding: 3px;
+    color: #fff;
+}
+
+.default-message > p.message-data {
+    width: 100%;
+    color: #777777;
+    font-size: 0.8em;
+    text-align: right;
+    font-weight: light;
+}
+
+.default-message > p.message-content {
+    background-color: var(--default-color-04);
+    border-radius: 15px;
+    text-align: left;
+    font-size: 0.9em;
+    padding: 12px;
+}
+
+.left-message {
+    margin-right: auto;
+    & > p.message-data { text-align: left; }
+    & > p.message-content { border-top-left-radius: 0; }
+}
+
+.right-message {
+    margin-left: auto;
+    & > p.message-data { margin-right: 3px; }
+    & > p.message-content { border-top-right-radius: 0; }
+}
+
+/*
+***************************************************************
+* Estlização do formulario de envio de mensagem.
+**************************************************************
+*/
+
+.chat-message-form {
+    display: flex;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.chat-message-form > input[type="text"] {
+    width: 94%;
+    border: none;
+    padding: 10px;
+    outline: none;
+    font-size: 0.8em;
+    text-indent: 10px;
+    border-radius: 10px;
+}
+
+.chat-message-form > i {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: var(--default-color-04);
+}

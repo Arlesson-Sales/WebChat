@@ -1,5 +1,11 @@
+/*
+***************************************************************
+* Componente de cabeçalho padrão presente em todas as paginas.
+**************************************************************
+*/
+
 .default-header {
-    background-color: var(--default-color-02);
+    background-color: var(--default-color-03);
     position: relative;
     width: 100%;
     margin: 0 auto;
