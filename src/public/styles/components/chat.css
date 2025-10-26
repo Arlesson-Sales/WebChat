@@ -7,7 +7,7 @@
 .chat-container {
     width: 100%;
     padding: 10px;
-    height: 560px;
+    height: 90vh;
     margin: 5px auto;
     border-radius: 10px;
     background-color: var(--default-color-01);
@@ -22,9 +22,9 @@
 .chat-container-body {
     margin: 0 auto 15px auto;
     overflow-y: scroll;
-    max-width: 650px;
+    max-width: 98%;
     outline: none;
-    height: 490px;
+    height: 92%;
 }
 
 .chat-container-body::-webkit-scrollbar {
@@ -93,13 +93,14 @@
     display: flex;
     max-width: 100%;
     flex-wrap: nowrap;
+    position: relative;
     align-items: center;
     border-radius: 10px;
     background-color: #fff;
 }
 
 .chat-message-form > input[type="text"] {
-    width: 94%;
+    width: 93%;
     border: none;
     padding: 10px;
     outline: none;
@@ -109,6 +110,9 @@
 }
 
 .chat-message-form > i {
+    position: absolute;
+    right: 5px;
+
     width: 35px;
     height: 35px;
     display: flex;

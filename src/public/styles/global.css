@@ -14,3 +14,8 @@
     --default-color-04: #7F6DCB;
     --default-color-05: #3E2C7E;
 }
+
+.invisible-link {
+    color: #fff;
+    text-decoration: none;
+}

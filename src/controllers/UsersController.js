@@ -6,6 +6,7 @@ import http from "http";
 
 class UsersController
 {
+    blacklist_tokens = new Set(); //Blacklist de tokens para serem deletados.
     online = new Set(); //Vetor que registra quais usuários estão online.
 
     ////////////////////////////////////////////////////////////////////////////
@@ -86,6 +87,27 @@ class UsersController
     }
 
     /**
+     * Função de rota para realização do logout da aplicação.
+     * @param {http.ClientRequest} request Objeto de requisição do cliente.
+     * @param {http.ServerResponse} response Objeto de resposta do servidor.
+     */
+    async logout(request, response)
+    {
+        try
+        {
+            const token = request.cookies.auth_token;
+            this.online.delete(request.user.name);
+            this.blacklist_tokens.add(token);
+            response.status(200).redirect("/");
+        }
+        catch (erro)
+        {
+            console.log("> Erro durante o processo de logout.");
+            response.status(400).redirect("/");
+        }
+    }
+
+    /**
      * Função de rota para realização de login de um usuário já cadastrado.
      * @param {http.ClientRequest} request Objeto de requisição do cliente.
      * @param {http.ServerResponse} response Objeto de resposta do servidor.
@@ -99,13 +121,7 @@ class UsersController
     
             //Criação do token de login
             if (result.is_ok)
-            {
-                response.cookie("auth_token", result.token, {
-                    httpOnly: true,
-                    sameSite: "Lax",
-                    maxAge: 24 * 60 * 60 * 1000
-                });
-            }
+                response.cookie("auth_token", result.token, { httpOnly: true, sameSite: "Lax" });
             response.status(result.status).redirect(`${result.dest}?message=${result.message}`);
         }
         catch(erro)

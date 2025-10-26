@@ -1,3 +1,4 @@
+import usersController from "../controllers/UsersController.js";
 import jwt from "jsonwebtoken";
 import http from "http";
 
@@ -10,7 +11,10 @@ import http from "http";
 export function loginTokenAuth(request, response, next)
 {
     const token = request.cookies.auth_token;
-    if (!token) return response.status(400).redirect("/forms");
+
+    //Verificanod se o token existe e é valido.
+    if (!token || usersController.blacklist_tokens.has(token))
+        return response.status(400).redirect("/forms");
 
     try
     {
