@@ -7,19 +7,22 @@ async function displayOnlineUsers()
 
     side_menu_list.innerHTML = "";
     for (const user_name of online_users)
-        side_menu_list.innerHTML += `<li><div class="online-dot"></div>${user_name}</li>`
+    {
+        side_menu_list.innerHTML += `
+            <li>
+                <div class="profile-circle">${user_name.slice(0, 2).toUpperCase()}</div>
+                <p>${user_name}</p>
+            </li>
+        `;
+    }
     window.setTimeout(displayOnlineUsers, 10000);
 }
 
 /** Função evento para fazer com que o meno lateral fique visivel ou não. */
 function toggleSideMenu()
 {
-    if (window.screen.width < 840)
-    {
-        const side_menu = document.querySelector(".side-menu");
-        side_menu.classList.toggle("side-menu-actived");
-    }
-
+    const side_menu = document.querySelector(".side-menu");
+    side_menu.classList.toggle("side-menu-actived");
 }
 
 window.addEventListener("load", () => {

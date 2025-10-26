@@ -5,7 +5,7 @@ function userConnection(io, socket, user)
 {
     if (!usersController.online.has(user.name))
     {
-        const message = { name: "", message: `${user.name} entrou no chat.` };
+        const message = { name: "", message: `${user.name} entrou no chat.`, type: "notification" };
         io.emit("send-message", message);
         usersController.online.add(user.name); //Colocando o usuário que acabou de entrar como online
         console.log(`> O usuário ${user.name} logou no chat | socket ${socket.id}`);
@@ -19,9 +19,9 @@ function userDisconnect(user_name)
 }
 
 /** Evento para validar a mensagem enviada pelo cliente e a exibir em todos os sockets conectados, além de armazenar a mesma nos logs. */
-function sendMessageToClient(io, message)
+function sendMessageToClient(io, socket, message)
 {
-    io.emit("send-message", message);
+    socket.broadcast.emit("send-message", message);
 }
 
 /** Evento padrão de desconexão do socket. */
@@ -35,7 +35,7 @@ export default function socketEvents(io)
 {
     io.on("connection", socket => {
         socket.on("new-user", user_data => userConnection(io, socket, user_data));
-        socket.on("send-message", message => sendMessageToClient(io, message));
+        socket.on("send-message", message => sendMessageToClient(io, socket, message));
         socket.on("disconnect", reason => socketDisconnect(socket, reason));
         socket.on("user-disconnect", userDisconnect);
     });

@@ -41,6 +41,14 @@
 **************************************************************
 */
 
+.notification-message {
+    margin: 10px auto;
+    text-align: center;
+    font-weight: light;
+    font-size: 0.9em;
+    color: #777;
+}
+
 .default-message {
     width: 200px;
     padding: 3px;
