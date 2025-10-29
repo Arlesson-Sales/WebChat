@@ -86,12 +86,14 @@ function appendMessage(data, message_direction = "left-message")
     message_container.classList.add(message_direction);
     message_content.classList.add("message-content");
     message_data.classList.add("message-data");
-
-    message_data.innerText = `${data.name} ${data.timestamp}`;
-    message_content.innerText = data.message;
     
+    //Adição do timestamp da mensagem caso ele exista
     message_container.appendChild(message_data);
+    message_data.innerText = `${data.name} ${data.timestamp}`;
+    //Adição do conteudo da mensagem
+    message_content.innerText = data.message;
     message_container.appendChild(message_content);
+
     chat_body.appendChild(message_container);
     chat_body.scrollTo({ top: chat_body.scrollHeight, behavior: "smooth" });
 }
