@@ -14,6 +14,25 @@ class UsersController
     /////////////////////////////////////////////////////////////////////////////
     
     /**
+     * Recebe a senha que o usuário deseja cadastrar na criação de sua conta e faz a validação da mesma, retornando um objeto que indica se ela esta no padrão ou não junto com uma mensagem.
+     * @param {string} password Senha do usuário.
+     * @returns 
+     */
+    #validatePassword(password)
+    {
+        if (!/[A-Za-z\d@$!%*?&]{8,}$/.test(password))
+            return { is_ok: false, message: "A senha deve ter pelo menos 8 caracteres" };
+        if (!/(?=.*[a-z])/.test(password))
+            return { is_ok: false, message: "A senha deve conter letras minusculas." };
+        if (!/(?=.*[A-Z])/.test(password))
+            return { is_ok: false, message: "A senha deve conter letras maiusculas." };
+        if (!/(?=.*\d)/.test(password))
+            return { is_ok: false, message: "A senha deve possuir numeros" }
+
+        return { is_ok: true, message: "A senha esta no padrão correto" };
+    }
+
+    /**
      * Método responsavel por fazer a criação, validação dos dados e cadastro de um novo usuário na aplicação.
      * @param {string} name Nome de usuário.
      * @param {string} password Senha do usuário.
@@ -23,7 +42,13 @@ class UsersController
     {
         if (await UserModel.findOne({ name })) //Validando nome.
             return { is_ok: false, status: 400, message: "Nome de usuário já está em uso", dest: "/forms" };
+        
+        //Realizando a validação da senha
+        const validation = this.#validatePassword(password);
+        if (!validation.is_ok)
+            return { is_ok: false, status: 400, message: validation.message, dest: "/forms" };
 
+        //Criando hash
         const hash = await bcrypt.hash(password, 12);
         const user = await UserModel.create({ online: false, token: "", hash, name });
         

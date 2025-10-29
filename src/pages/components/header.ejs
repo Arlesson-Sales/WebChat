@@ -13,8 +13,8 @@
     </div>
 
     <div id="header-user-infos">
-        <div class="profile-circle">UR</div>
-        <p><%= name %></p>
+        <div class="profile-circle"><%= name.slice(0, 2).toUpperCase(); %></div>
+        <p><%= name; %></p>
         <a class="invisible-link" href="./logout/"><i id="header-icon-logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
     </div>
 </header>
