@@ -7,7 +7,6 @@ function userConnection(io, socket, user)
     {
         const message = { name: "", message: `${user.name} entrou no chat.`, type: "notification" };
         io.emit("send-message", message);
-        usersController.online.add(user.name); //Colocando o usuário que acabou de entrar como online
         console.log(`> O usuário ${user.name} logou no chat | socket ${socket.id}`);
     }
 }

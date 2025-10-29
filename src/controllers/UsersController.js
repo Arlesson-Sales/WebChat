@@ -7,18 +7,26 @@ import http from "http";
 class UsersController
 {
     blacklist_tokens = new Set(); //Blacklist de tokens para serem deletados.
-    online = new Set(); //Vetor que registra quais usuários estão online.
+    online = new Map(); //Coleção para armazenar os usuários online.
 
-    ////////////////////////////////////////////////////////////////////////////
-    /// MÉTODOS CONTROLADORES
-    /////////////////////////////////////////////////////////////////////////////
-    
+    /**
+     * Recebe como argumento um token de authenticação que foi gerado quando determinado usuário logou, fazendo com que o mesmo seja removido da lista de onlines.
+     * @param {string} token Token de authenticação.
+     */
+    removeOnlineUser(token)
+    {
+        this.online.forEach((user_token, user_name) => {
+            if (user_token === token)
+                this.online.delete(user_name);
+        });
+    }
+
     /**
      * Recebe a senha que o usuário deseja cadastrar na criação de sua conta e faz a validação da mesma, retornando um objeto que indica se ela esta no padrão ou não junto com uma mensagem.
      * @param {string} password Senha do usuário.
      * @returns 
      */
-    #validatePassword(password)
+    validatePassword(password)
     {
         if (!/[A-Za-z\d@$!%*?&]{8,}$/.test(password))
             return { is_ok: false, message: "A senha deve ter pelo menos 8 caracteres" };
@@ -32,6 +40,10 @@ class UsersController
         return { is_ok: true, message: "A senha esta no padrão correto" };
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    /// MÉTODOS CONTROLADORES
+    /////////////////////////////////////////////////////////////////////////////
+
     /**
      * Método responsavel por fazer a criação, validação dos dados e cadastro de um novo usuário na aplicação.
      * @param {string} name Nome de usuário.
@@ -44,7 +56,7 @@ class UsersController
             return { is_ok: false, status: 400, message: "Nome de usuário já está em uso", dest: "/forms" };
         
         //Realizando a validação da senha
-        const validation = this.#validatePassword(password);
+        const validation = this.validatePassword(password);
         if (!validation.is_ok)
             return { is_ok: false, status: 400, message: validation.message, dest: "/forms" };
 
@@ -72,6 +84,8 @@ class UsersController
                 const payload = { name: user.name };
                 const secret = process.env.JWT_SECRET || crypto.randomBytes(64).toString("hex");
                 const token = jwt.sign(payload, secret, { expiresIn: "24h" });
+
+                this.online.set(name, token); //Definindo que o usuário logado com esse token está online
                 return { is_ok: true, status: 200, message: "Login efetuado com sucesso", dest: "/home", token, user };
             }
             return { is_ok: false, status: 401, message: "Senha incorreta", dest: "/forms" };
@@ -89,7 +103,9 @@ class UsersController
      * @param {http.ServerResponse} response Objeto de resposta do servidor.
      */
     getOnline(request, response) {
-        response.status(200).json([...this.online]);
+        const online = [];
+        this.online.forEach((token, name) => online.push(name));
+        response.status(200).json(online);
     }
 
     /**
@@ -121,7 +137,7 @@ class UsersController
         try
         {
             const token = request.cookies.auth_token;
-            this.online.delete(request.user.name);
+            this.removeOnlineUser(token);
             this.blacklist_tokens.add(token);
             response.status(200).redirect("/");
         }
