@@ -73,6 +73,7 @@
 
 .default-header > div#header-user-infos {
     width: 100px;
+    user-select: none;
     justify-content: center;
     & > p { display: none }
 }
@@ -102,6 +103,16 @@
 */
 
 @media (min-width: 840px) {
+    .default-header > div#header-user-infos {
+        width: 240px;
+        & > p {
+            display: block;
+            text-align: right;
+        }
+    }
+}
+
+@media (min-width: 1230px) {
     .default-header > div#header-side-menu-container {
         display: none;
     }
@@ -109,13 +120,5 @@
     .default-header > div#header-online-infos {
         justify-content: space-around;
         display: flex;
-    }
-
-    .default-header > div#header-user-infos {
-        width: 240px;
-        & > p {
-            display: block;
-            text-align: right;
-        }
     }
 }

@@ -5,11 +5,11 @@
 */
 .side-menu {
     background-color: var(--default-color-03);
-    border-bottom-right-radius: 20px;
+    border-bottom-right-radius: 5px;
     transition: transform 0.5s ease;
     transform: translateX(-100%);
     position: absolute;
-    width: 230px;
+    width: 250px;
     height: 83vh;
     left: 0;
 }
@@ -65,7 +65,7 @@
 ************************************************************************
 */
 
-@media (min-width: 840px) {
+@media (min-width: 1230px) {
     .side-menu {
         transform: translateX(0);
     }
