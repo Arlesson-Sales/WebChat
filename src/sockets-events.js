@@ -26,6 +26,7 @@ function sendMessageToClient(io, socket, message)
 /** Evento padrão de desconexão do socket. */
 function socketDisconnect(socket, reason)
 {
+    usersController.online.delete(socket.user.name);
     console.log(`> O socket ${socket.id} foi desconectado pelo motivo: ${reason}`);
 }
 

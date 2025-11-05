@@ -6,6 +6,7 @@ import express from "express";
 import http from "http";
 import ejs from "ejs";
 
+import { socketAuth } from "../middlewares/authenticate.js";
 import { users_routers } from "../routers/users.-routers.js";
 import default_routers from "../routers/default-routers.js";
 
@@ -14,7 +15,7 @@ class ServerController
 {
     app = express();
     server = http.createServer(this.app);
-    io = new Server(this.server);
+    io = new Server(this.server, { cors: { origin: process.env.ORIGIN, credentials: true } });
 
     socketsEventsSetup() { this.io.on("connection", socketEvents); }
 
@@ -40,6 +41,7 @@ class ServerController
         socketEvents(this.io);
 
         //Definindo middlewares
+        this.io.use(socketAuth);
         this.app.use("/public", express.static("./src/public"));
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.json());
