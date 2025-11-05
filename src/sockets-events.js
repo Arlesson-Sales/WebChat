@@ -7,6 +7,7 @@ function userConnection(io, socket, user)
     {
         const message = { name: "", message: `${user.name} entrou no chat.`, type: "notification" };
         io.emit("send-message", message);
+        usersController.online.set(user.name);
         console.log(`> O usuário ${user.name} logou no chat | socket ${socket.id}`);
     }
 }

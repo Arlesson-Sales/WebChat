@@ -85,7 +85,6 @@ class UsersController
                 const secret = process.env.JWT_SECRET || crypto.randomBytes(64).toString("hex");
                 const token = jwt.sign(payload, secret, { expiresIn: "24h" });
 
-                this.online.set(name, token); //Definindo que o usuário logado com esse token está online
                 return { is_ok: true, status: 200, message: "Login efetuado com sucesso", dest: "/home", token, user };
             }
             return { is_ok: false, status: 401, message: "Senha incorreta", dest: "/forms" };
