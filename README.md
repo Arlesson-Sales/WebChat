@@ -33,35 +33,6 @@ Um sistema completo de **cadastro, login e chat global em tempo real**, onde ape
   - Usuários armazenados no MongoDB
   - Campos: nome, hash da senha, token e status online
 
-## 🧩 Configuração e Execução
-
-### 1. Clonar o repositório
-```bash
-git clone https://github.com/seu-usuario/chat-global-login.git
-cd chat-global-login
-````
-
-### 2. Instalar dependências
-
-```bash
-npm install
-```
-
-### 3. Criar arquivo `.env`
-
-```env
-PORT=3000
-DATABASE_KEY=mongodb+srv://<usuario>:<senha>@<cluster>.mongodb.net/<db>
-JWT_SECRET=uma_chave_segura
-ORIGIN=http://localhost:3000
-```
-
-### 4. Iniciar o servidor
-
-```bash
-npm start
-```
-
 ## 💻 Demonstração
 
 1. Acesse `/forms` para cadastrar ou logar.
